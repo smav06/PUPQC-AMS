@@ -1,1 +1,0 @@
-# PUPQC-AMS
