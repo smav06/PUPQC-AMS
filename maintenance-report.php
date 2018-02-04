@@ -5,7 +5,11 @@ session_start();
 
 if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Officer')
 {
+<<<<<<< HEAD
   echo "<script>window.location.assign('index.php')</script>";
+=======
+  echo "<script>window.location.assign('login.php')</script>";
+>>>>>>> 2af72c71ba6e4c55cd73852e5c8fbec8665bf0d5
 }
 ?>
 
@@ -19,7 +23,11 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
   <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+<<<<<<< HEAD
   <title>Maintenance | Report of Damage</title>
+=======
+  <title>Maintenance kdjaskjd adhjka| Report of Damage</title>
+>>>>>>> 2af72c71ba6e4c55cd73852e5c8fbec8665bf0d5
 
   <!-- Favicons-->
   <link rel="icon" href="images/favicon/PUPLogo-32-32.png" sizes="32x32">

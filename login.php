@@ -15,7 +15,7 @@
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
   <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
-  <title>LOGIN | PUP QC AMS</title>
+  <title>LOGIN  jkdaskdhasdsakj | PUP QC AMS</title>
 
   <!-- Favicons-->
   <link rel="icon" href="images/PUPLogo.png" sizes="32x32">
@@ -126,7 +126,11 @@
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
+<<<<<<< HEAD:index.php
             <input name="usernames" type="text" value="osas-du-0001" required="required">
+=======
+            <input name="usernames" type="text" value="DU20180001" required="required">
+>>>>>>> 2af72c71ba6e4c55cd73852e5c8fbec8665bf0d5:login.php
             <label for="username" class="center-align">Username</label>
           </div>
         </div>
