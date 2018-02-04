@@ -38,45 +38,114 @@
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
   <link href="js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="js/plugins/sweetalert/sweetalert.css" type="text/css" rel="stylesheet" media="screen,projection">
   
 </head>
 
 <body class="cyan">
-
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
-      <form class="login-form">
+      <form action="#" method="POST" class="login-form">
+
         <div class="row">
           <div class="input-field col s12 center">
             <img src="images/PUPLogo.png" alt="" class="circle responsive-img valign profile-image-login">
             <p class="center login-form-text">PUP QC <br>ASSET MANAGEMENT SYSTEM</p>
           </div>
         </div>
+
+        <?php
+
+          if(isset($_POST["submit"]))
+          {
+
+            $username = $_POST['usernames'];
+            $password = sha1($_POST['passwords']);
+
+            $mysqli = new mysqli("localhost", "root", "", "AMS_SAMPLE_DB");
+
+            if ($mysqli->connect_errno) 
+            {
+              echo "Failed to connect to Database: " . $mysqli->connect_error;
+            }
+
+            $res = $mysqli->query("SELECT * FROM AMS_R_USER AS U INNER JOIN AMS_R_EMPLOYEE_PROFILE AS EP ON U.EP_ID = EP.EP_ID WHERE U.U_USERNAME='$username' and U.U_PASSWORD='$password'");
+            $row = $res->fetch_assoc();
+            $fname = $row['EP_FIRST_NAME'];
+            $mname = $row['EP_MIDDLE_NAME'];
+            $lname = $row['EP_LAST_NAME'];
+            $name = $fname.' '.$mname.' '.$lname;
+            $user = $row['U_USERNAME'];
+            $pass = $row['U_PASSWORD'];
+            $type = $row['U_ROLE_CODE'];
+
+            if($user==$username && $pass=$password)
+            {
+              session_start();
+              if($type=="Departmental User")
+              {
+                $_SESSION['mysesi']=$name;
+                $_SESSION['mytype']=$type;
+                echo "<script>window.location.assign('du-dashboard.php')</script>";
+              } 
+              else if($type=="Administrator")
+              {
+                $_SESSION['mysesi']=$name;
+                $_SESSION['mytype']=$type;
+                echo "<script>window.location.assign('ad-dashboard.php')</script>";
+              }
+              else if($type=="Property Officer")
+              {
+                $_SESSION['mysesi']=$name;
+                $_SESSION['mytype']=$type;
+                echo "<script>window.location.assign('po-dashboard.php')</script>";
+              } 
+              else
+              {
+          ?>
+            
+
+          
+          <?php
+              }
+            }
+            else
+            {
+          ?>
+
+            <div class="row margin">
+              <p style="margin-left: 13px; color: #8C1C1C;">Incorrect Username and/or Password!</p>
+            </div>
+
+          <?php
+            }
+          }
+          ?>
+
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
-            <input id="username" type="text">
+            <input name="usernames" type="text" value="osas-du-0001" required="required">
             <label for="username" class="center-align">Username</label>
           </div>
         </div>
+
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password" type="password">
+            <input name="passwords" value="password" type="password" required="required">
             <label for="password">Password</label>
           </div>
         </div>
-        <div class="row">          
-          <div class="input-field col s12 m12 l12  login-text">
-              <input type="checkbox" id="remember-me" />
-              <label for="remember-me">Remember me</label>
-          </div>
-        </div>
+
         <div class="row">
           <div class="input-field col s12">
-            <a href="po-dashboard.php" class="btn waves-effect waves-light col s12">Login</a>
+            <input type="submit" name="submit" class="btn waves-light col s12">
+            <!-- <a id="submit" name="submit" class="btn waves-effect waves-light col s12">Login</a> -->
           </div>
         </div>
+
         <div class="row">
           <div class="input-field col s6 m6 l6">
               <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>
@@ -96,10 +165,23 @@
   <!--scrollbar-->
   <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
+    <!-- chartist -->
+    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>   
+    <!--sweetalert -->
+    <script type="text/javascript" src="js/plugins/sweetalert/sweetalert.min.js"></script>   
+
       <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.min.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="js/custom-script.js"></script>
+
+    <script type="text/javascript">
+      
+      $('.btn-success').click(function(){
+          swal("Good job!", "You clicked the button!", "success");
+        });
+
+    </script>
 
 </body>
 

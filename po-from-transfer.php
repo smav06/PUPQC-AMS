@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -18,7 +17,7 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
   <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
-  <title>Dashboard</title>
+  <title>From Transfer</title>
 
   <!-- Favicons-->
   <link rel="icon" href="images/favicon/PUPLogo-32-32.png" sizes="32x32">
@@ -34,15 +33,17 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
   
   <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.min.css" type="text/css" rel="stylesheet" media="screen,projection">
-    <!-- Custome CSS-->    
-    <link href="css/custom/custom.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <!-- Custome CSS-->    
+  <link href="css/custom/custom.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  
+  
 
 
   <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
   <link href="js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="js/plugins/fullcalendar/css/fullcalendar.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 </head>
 
 <body>
@@ -100,6 +101,8 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
   </header>
   <!-- END HEADER -->
 
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
   <!-- START MAIN -->
   <div id="main">
     <!-- START WRAPPER -->
@@ -125,7 +128,7 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
                 </div>
             </div>
             </li>
-            <li class="bold active"><a href="po-dashboard.php" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+            <li class="bold"><a href="po-dashboard.php" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
             </li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
@@ -154,14 +157,14 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
                         </div>
                     </li>
                     
-                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-action-get-app"></i> Acquisition </a>
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-action-get-app"></i> Acquisition </a>
                         <div class="collapsible-body">
-                            <ul>                                    
+                            <ul>                                        
                                 <li><a href="po-from-donation.php">From Donation</a>
                                 </li>
                                 <li><a href="po-from-requests.php">From Requests</a>
                                 </li>
-                                <li><a href="po-from-transfer.php">From Transfer</a>
+                                <li class="active"><a href="po-from-transfer.php">From Transfer</a>
                                 </li>
                             </ul>
                         </div>
@@ -192,7 +195,7 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
             </li>
         </ul>
         <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
-        </aside>
+      </aside>
       <!-- END LEFT SIDEBAR NAV-->
 
       <!-- //////////////////////////////////////////////////////////////////////////// -->
@@ -206,9 +209,9 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
             <div class="row">
               <div class="col s12 m12 l12">
                 <ol class="breadcrumbs">
-                  <li class="active"><a href="po-dashboard.php">Dashboard</a>
+                  <li class="active"><a href="po-from-transfer.php">Acquisition</a>
                   </li>
-                  <li></li>
+                  <li>From Transfer</li>
                 </ol>
               </div>
             </div>
@@ -219,306 +222,91 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
 
         <!--start container-->
         <div class="container">
-
-          <div id="chart-dashboard">
-              <div class="row">
-                  <div class="col s12 m8 l8">
-                      <div class="card">
-                          <div class="card-move-up waves-effect waves-block waves-light">
-                              <div class="move-up cyan darken-1">
-                                  <div>
-                                      <span class="chart-title white-text">Revenue</span>
-                                      <div class="chart-revenue cyan darken-2 white-text">
-                                          <p class="chart-revenue-total">$4,500.85</p>
-                                          <p class="chart-revenue-per"><i class="mdi-navigation-arrow-drop-up"></i> 21.80 %</p>
-                                      </div>
-                                      <div class="switch chart-revenue-switch right">
-                                          <label class="cyan-text text-lighten-5">
-                                            Month
-                                            <input type="checkbox">
-                                            <span class="lever"></span> Year
-                                          </label>
-                                      </div>
-                                  </div>
-                                  <div class="trending-line-chart-wrapper">
-                                      <canvas id="trending-line-chart" height="70"></canvas>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="card-content">
-                              <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
-                              <div class="col s12 m3 l3">
-                                  <div id="doughnut-chart-wrapper">
-                                      <canvas id="doughnut-chart" height="200"></canvas>
-                                      <div class="doughnut-chart-status">4500
-                                          <p class="ultra-small center-align">Sold</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col s12 m2 l2">
-                                  <ul class="doughnut-chart-legend">
-                                      <li class="mobile ultra-small"><span class="legend-color"></span>Mobile</li>
-                                      <li class="kitchen ultra-small"><span class="legend-color"></span> Kitchen</li>
-                                      <li class="home ultra-small"><span class="legend-color"></span> Home</li>
-                                  </ul>
-                              </div>
-                              <div class="col s12 m5 l6">
-                                  <div class="trending-bar-chart-wrapper">
-                                      <canvas id="trending-bar-chart" height="90"></canvas>                                                
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Revenue by Month <i class="mdi-navigation-close right"></i></span>
-                              <table class="responsive-table">
-                                  <thead>
-                                      <tr>
-                                          <th data-field="id">ID</th>
-                                          <th data-field="month">Month</th>
-                                          <th data-field="item-sold">Item Sold</th>
-                                          <th data-field="item-price">Item Price</th>
-                                          <th data-field="total-profit">Total Profit</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td>1</td>
-                                          <td>January</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>2</td>
-                                          <td>February</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>3</td>
-                                          <td>March</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>4</td>
-                                          <td>April</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>5</td>
-                                          <td>May</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>6</td>
-                                          <td>June</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>7</td>
-                                          <td>July</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>8</td>
-                                          <td>August</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>9</td>
-                                          <td>Septmber</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>10</td>
-                                          <td>Octomber</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>11</td>
-                                          <td>November</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                      <tr>
-                                          <td>12</td>
-                                          <td>December</td>
-                                          <td>122</td>
-                                          <td>100</td>
-                                          <td>$122,00.00</td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-
-
-                      </div>
-                  </div>
-
-                  <div class="col s12 m4 l4">
-                      <div class="card">
-                          <div class="card-move-up teal waves-effect waves-block waves-light">
-                              <div class="move-up">
-                                  <p class="margin white-text">Browser Stats</p>
-                                  <canvas id="trending-radar-chart" height="114"></canvas>
-                              </div>
-                          </div>
-                          <div class="card-content  teal darken-2">
-                              <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
-                              <div class="line-chart-wrapper">
-                                  <p class="margin white-text">Revenue by country</p>
-                                  <canvas id="line-chart" height="114"></canvas>
-                              </div>
-                          </div>
-                          <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Revenue by country <i class="mdi-navigation-close right"></i></span>
-                              <table class="responsive-table">
-                                  <thead>
-                                      <tr>
-                                          <th data-field="country-name">Country Name</th>
-                                          <th data-field="item-sold">Item Sold</th>
-                                          <th data-field="total-profit">Total Profit</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td>USA</td>
-                                          <td>65</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                      <tr>
-                                          <td>UK</td>
-                                          <td>76</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Canada</td>
-                                          <td>65</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Brazil</td>
-                                          <td>76</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                      <tr>
-
-                                          <td>India</td>
-                                          <td>65</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                      <tr>
-                                          <td>France</td>
-                                          <td>76</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Austrelia</td>
-                                          <td>65</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Russia</td>
-                                          <td>76</td>
-                                          <td>$452.55</td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-
           <div class="section">
 
-            <div id="card-stats">
-
-                <div class="row">
-                    <div class="col s12 m6 l3">
-                        <div class="card">
-                            <div class="card-content  green white-text">
-                                <p class="card-stats-title"><i class="mdi-social-group-add"></i> New Clients</p>
-                                <h4 class="card-stats-number">566</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">from yesterday</span>
-                                </p>
-                            </div>
-                            <div class="card-action  green darken-2">
-                                <div id="clients-bar" class="center-align"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card">
-                            <div class="card-content pink lighten-1 white-text">
-                                <p class="card-stats-title"><i class="mdi-editor-insert-drive-file"></i> New Invoice</p>
-                                <h4 class="card-stats-number">1806</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last month</span>
-                                </p>
-                            </div>
-                            <div class="card-action  pink darken-2">
-                                <div id="invoice-line" class="center-align"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card">
-                            <div class="card-content blue-grey white-text">
-                                <p class="card-stats-title"><i class="mdi-action-trending-up"></i> Today Profit</p>
-                                <h4 class="card-stats-number">$806.52</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
-                                </p>
-                            </div>
-                            <div class="card-action blue-grey darken-2">
-                                <div id="profit-tristate" class="center-align"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <div class="card">
-                            <div class="card-content purple white-text">
-                                <p class="card-stats-title"><i class="mdi-editor-attach-money"></i>Total Sales</p>
-                                <h4 class="card-stats-number">$8990.63</h4>
-                                <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">last month</span>
-                                </p>
-                            </div>
-                            <div class="card-action purple darken-2">
-                                <div id="sales-compositebar" class="center-align"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--  dsaldskladsa -->
-
+            <div class="col s12 m12 l6">
+              <h1>ADD ASSET FROM TRANSFER</h1>
             </div>
 
+            <div class="col s12 m12 l6">
+              <div class="card-panel">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <select>
+                      <option value="" disabled selected>Select Campus</option>
+                      <option value="1">PUP Sta. Mesa</option>
+                      <option value="2">PUP Taguiug</option>
+                      <option value="3">PUP San Juan</option>
+                    </select>
+                    <label for="unit">Transferred From</label>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="row">
+                  <form class="col s12">
+
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <input type="number" id="number" max="100" min="1" maxlength="2">
+                        <label for="number">Quantity</label>
+                      </div>
+
+                      <div class="input-field col s6">
+                        <select>
+                          <option value="" disabled selected>Select Unit</option>
+                          <option value="1">Set</option>
+                          <option value="2">Piece</option>
+                          <option value="3">Bundle</option>
+                        </select>
+                        <label for="unit">Unit</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <select>
+                          <option value="" disabled selected>Select Asset Type</option>
+                          <option value="1">Laptop</option>
+                          <option value="2">Aircon</option>
+                          <option value="3">Monitor</option>
+                        </select>
+                        <label for="unit">Asset Type</label>
+                      </div>
+
+                      <div class="input-field col s6">
+                        <input type="date" class="datepicker">
+                        <label for="dob">Date Acquired</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="description" class="materialize-textarea" maxlength="300"></textarea>
+                        <label for="description">Description of Asset</label>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <button style="margin-right: 10px;" class="btn cyan waves-effect waves-light right" type="submit">Add Asset
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <!--end container-->
+
       </section>
       <!-- END CONTENT -->
 
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
       <!-- START RIGHT SIDEBAR NAV-->
       <aside id="right-sidebar-nav">
         <ul id="chat-out" class="side-nav rightside-navigation">
@@ -663,6 +451,10 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
   </div>
   <!-- END MAIN -->
 
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
   <!-- START FOOTER -->
   <footer class="page-footer">
     <div class="footer-copyright">
@@ -673,6 +465,12 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
     </div>
   </footer>
     <!-- END FOOTER -->
+
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
     
     <!-- jQuery Library -->
     <script type="text/javascript" src="js/plugins/jquery-1.11.2.min.js"></script>    
@@ -680,31 +478,38 @@ if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Office
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <!--prism-->
     <script type="text/javascript" src="js/plugins/prism/prism.js"></script>
-    
+    <!-- data-tables -->
+    <script type="text/javascript" src="js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script>
     <!-- chartist -->
     <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>   
-
+    <script type="text/javascript" src="js/plugins/formatter/jquery.formatter.min.js"></script>
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.min.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="js/custom-script.js"></script>
+    <script type="text/javascript">
+        /*Show entries on click hide*/
+        $(document).ready(function(){
+            $(".dropdown-content.select-dropdown li").on( "click", function() {
+                var that = this;
+                setTimeout(function(){
+                if($(that).parent().hasClass('active')){
+                        $(that).parent().removeClass('active');
+                        $(that).parent().hide();
+                }
+                },100);
+            });
+        });
 
-    <!-- chartjs -->
-    <script type="text/javascript" src="js/plugins/chartjs/chart.min.js"></script>
-    <script type="text/javascript" src="js/plugins/chartjs/chart-script.js"></script>
+        $('#number').formatter({
+          'pattern': '{{9999999999}}',
+        });
 
-    <!-- sparkline -->
-    <script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script type="text/javascript" src="js/plugins/sparkline/sparkline-script.js"></script>
-    
-    <!-- google map api -->
-    <script type="text/javascript" src="js/maps.js"></script>
-
-    <!--jvectormap-->
-    <script type="text/javascript" src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script type="text/javascript" src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script type="text/javascript" src="js/plugins/jvectormap/vectormap-script.js"></script>
-    
+        $('#unit-cost').formatter({
+          'pattern': '{{9999999999}}',
+        });
+    </script>
 </body>
 
 </html>
