@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!--================================================================================
-	Item Name: Materialize - Material Design Admin Template
-	Version: 3.1
-	Author: GeeksLabs
-	Author URL: http://www.themeforest.net/user/geekslabs
-================================================================================ -->
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -126,7 +119,7 @@
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
-            <input name="usernames" type="text" value="osas-du-0001" required="required">
+            <input name="usernames" type="text" required="required">
             <label for="username" class="center-align">Username</label>
           </div>
         </div>
@@ -134,7 +127,7 @@
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input name="passwords" value="password" type="password" required="required">
+            <input name="passwords" type="password" required="required">
             <label for="password">Password</label>
           </div>
         </div>
@@ -158,6 +151,8 @@
 
   <!-- jQuery Library -->
   <script type="text/javascript" src="js/plugins/jquery-1.11.2.min.js"></script>
+  <!--angularjs-->
+  <script type="text/javascript" src="js/plugins/angular.min.js"></script>
   <!--materialize js-->
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <!--prism-->

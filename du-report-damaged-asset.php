@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Property Officer')
+if (!isset($_SESSION['mysesi']) && !isset($_SESSION['mytype'])=='Departmental User')
 {
   echo "<script>window.location.assign('index.php')</script>";
 }
